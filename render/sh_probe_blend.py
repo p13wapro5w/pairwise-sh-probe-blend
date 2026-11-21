@@ -2,60 +2,63 @@ import math
 
 def inv_weight(distance, eps):
     """反距离权重。"""
-    raise NotImplementedError("TODO: inv_weight")
+    return 1.0 / (distance + eps)
 
 def normalize(weights):
     """权重归一。"""
-    raise NotImplementedError("TODO: normalize")
+    total = sum(weights)
+    if total == 0:
+        return [0.0 for _ in weights]
+    return [w / total for w in weights]
 
 def sh_coeff(order):
     """球谐系数量。"""
-    raise NotImplementedError("TODO: sh_coeff")
+    return (order + 1) ** 2
 
 def missing(value, fallback):
     """缺失探针回退。"""
-    raise NotImplementedError("TODO: missing")
+    return fallback if value is None else value
 
 def dynamic(enabled):
     """动态探针。"""
-    raise NotImplementedError("TODO: dynamic")
+    return bool(enabled)
 
 def unify_order(a, b):
     """统一阶数。"""
-    raise NotImplementedError("TODO: unify_order")
+    return min(a, b)
 
 def srgb_to_linear(value):
     """线性空间。"""
-    raise NotImplementedError("TODO: srgb_to_linear")
+    return value ** 2.2
 
 def continuous(a, b, tol):
     """边界连续。"""
-    raise NotImplementedError("TODO: continuous")
+    return abs(a - b) <= tol
 
 def layer(y, size):
     """高度分层。"""
-    raise NotImplementedError("TODO: layer")
+    return math.floor(y / size)
 
 def stale(baked, runtime):
     """版本失效。"""
-    raise NotImplementedError("TODO: stale")
+    return baked != runtime
 
 def tetra_count(probes):
     """四面体数量。"""
-    raise NotImplementedError("TODO: tetra_count")
+    return max(0, probes - 3)
 
 def weight_sum(weights):
     """权重和。"""
-    raise NotImplementedError("TODO: weight_sum")
+    return sum(weights)
 
 def clamp01(value):
     """归一钳制。"""
-    raise NotImplementedError("TODO: clamp01")
+    return min(1.0, max(0.0, value))
 
 def probe_key(probe_id):
     """探针键。"""
-    raise NotImplementedError("TODO: probe_key")
+    return f"p:{probe_id}"
 
 def is_linear(space):
     """空间判定。"""
-    raise NotImplementedError("TODO: is_linear")
+    return space == "linear"
